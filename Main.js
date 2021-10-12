@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.0
-// @updateURL    https://github.com/mawesome4ever/GameLauncherTamperMonkey/raw/master/Join.user.js
+// @version      1.1
+// @updateURL    https://github.com/Haydz6/URLServerJoin/raw/master/Main.js
 // @description  Join specific server with JobID
 // @author       Haydz6
 // @match        http*://*.roblox.com/games/*
@@ -11,12 +11,8 @@
 // ==/UserScript==
 
 function GetURLParameter(sParam){
-    console.log(window.location.href)
-    console.log(sParam)
     var sPageURL = window.location.search.substring(1);
-    console.log(sPageURL)
     var sURLVariables = sPageURL.split('?');
-    console.log(sURLVariables)
     for (var i = 0; i < sURLVariables.length; i++){
         var sParameterName = sURLVariables[i].split('=');
         if (sParameterName[0] == sParam){
@@ -28,16 +24,23 @@ function GetURLParameter(sParam){
 function GrabURLEarly(){
     var PlaceID = location.href.match(/\/(\d+)\//g);
     PlaceID = String(PlaceID).match(/\d+/g);
-    let gameid = GetURLParameter("gameid");
-    console.log(" placeid: "+PlaceID+" gameid: "+gameid);
-    return gameid & PlaceID
+    let JobID = GetURLParameter("JobID");
+    console.log(" placeid: "+PlaceID+" jobId: "+JobID);
+    return {JobID, PlaceID}
 }
 
-function JoinPlace(JobID, GameID){
-  if (GameID && JobID){
-      Roblox.GameLauncher.joinGameInstance(parseInt(GameID,10), String(JobID));
+function JoinPlace(JobID, PlaceID){
+  console.log("JoinPlace fired with JobID: "+ JobID + "GameID: " + PlaceID)
+  if (PlaceID && JobID){
+      Roblox.GameLauncher.joinGameInstance(parseInt(PlaceID,10), String(JobID));
   }
 }
 
-var JobID, GameID = GrabURLEarly()
-document.body.onload = JoinPlace(JobID, GameID);
+var {JobID, PlaceID} = GrabURLEarly()
+console.log(JobID + " " + PlaceID)
+
+function PageLoaded(){
+    JoinPlace(JobID, PlaceID)
+}
+
+window.onload = PageLoaded;
