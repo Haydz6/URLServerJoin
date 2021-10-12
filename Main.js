@@ -2,7 +2,7 @@
 // @name         URL Server Join
 // @namespace    name?
 // @version      1.1
-// @updateURL    https://github.com/Haydz6/URLServerJoin/raw/master/Main.js
+// @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @description  Join specific server with JobID
 // @author       Haydz6
 // @match        http*://*.roblox.com/games/*
