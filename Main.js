@@ -37,7 +37,6 @@ function JoinPlace(JobID, PlaceID){
 }
 
 var {JobID, PlaceID} = GrabURLEarly()
-console.log(JobID + " " + PlaceID)
 
 function PageLoaded(){
     JoinPlace(JobID, PlaceID)
