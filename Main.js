@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.1
+// @version      1.2
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
+// @homepage     https://github.com/Haydz6/URLServerJoin
+// @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @description  Join specific server with JobID
 // @author       Haydz6
 // @match        http*://*.roblox.com/games/*
 // @grant        none
-// @run-at        document-start
+// @run-at       document-start
 // ==/UserScript==
 
 function GetURLParameter(sParam){
