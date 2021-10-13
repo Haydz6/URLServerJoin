@@ -12,6 +12,8 @@
 // @run-at       document-start
 // ==/UserScript==
 
+//Forked from https://github.com/mawesome4ever/GameLauncherTamperMonkey by mawesome4ever
+
 function GetURLParameter(sParam){
     var sPageURL = window.location.search.substring(1)
     var sURLVariables = sPageURL.split('?')
