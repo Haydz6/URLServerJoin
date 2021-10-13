@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.5
+// @version      1.6
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
@@ -11,8 +11,6 @@
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
-
-//Forked from https://github.com/mawesome4ever/GameLauncherTamperMonkey by mawesome4ever
 
 function GetURLParameter(sParam){
     var sPageURL = window.location.search.substring(1)
@@ -33,9 +31,7 @@ function GrabURLEarly(){
 
 function JoinPlace(JobID, PlaceID){
   console.log("JoinPlace fired with JobID: "+ JobID + "GameID: " + PlaceID)
-  if (PlaceID && JobID){
-      Roblox.GameLauncher.joinGameInstance(parseInt(PlaceID,10), String(JobID))
-  }
+  Roblox.GameLauncher.joinGameInstance(parseInt(PlaceID,10), String(JobID))
 }
 
 function ClientOpened(){
@@ -53,4 +49,4 @@ function PageLoaded(){
     }
 }
 
-window.onload = PageLoaded
+if (JobID && PlaceID){window.onload = PageLoaded}
