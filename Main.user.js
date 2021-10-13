@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.4
+// @version      1.5
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
@@ -36,10 +36,19 @@ function JoinPlace(JobID, PlaceID){
   }
 }
 
+function ClientOpened(){
+    window.close()
+}
+
 var {JobID, PlaceID} = GrabURLEarly()
 
 function PageLoaded(){
     JoinPlace(JobID, PlaceID)
+    for (const property in Roblox.GameLauncher) {
+        if (property.slice(0,6).toLowerCase() == "jquery"){
+            Roblox.GameLauncher[property].events.startClientSucceeded["0"].handler = ClientOpened
+        }
+    }
 }
 
 window.onload = PageLoaded
