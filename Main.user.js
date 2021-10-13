@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.3
+// @version      1.4
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
