@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.6
+// @version      1.7
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
@@ -13,20 +13,19 @@
 // ==/UserScript==
 
 function GetURLParameter(sParam){
-    var sPageURL = window.location.search.substring(1)
-    var sURLVariables = sPageURL.split('?')
+    const sPageURL = window.location.search.substring(1)
+    const sURLVariables = sPageURL.split('?')
     for (var i = 0; i < sURLVariables.length; i++){
-        var sParameterName = sURLVariables[i].split('=')
+        const sParameterName = sURLVariables[i].split('=')
         if (sParameterName[0] == sParam){
             return sParameterName[1];
         }
     }
 }
 function GrabURLEarly(){
-    var PlaceID = location.href.match(/\/(\d+)\//g)
-    PlaceID = String(PlaceID).match(/\d+/g)
-    let JobID = GetURLParameter("JobID")
-    return {JobID, PlaceID}
+    const PlaceID = String(location.href.match(/\/(\d+)\//g)).match(/\d+/g)
+    const JobID = GetURLParameter("JobID")
+    return [JobID, PlaceID]
 }
 
 function JoinPlace(JobID, PlaceID){
@@ -38,7 +37,7 @@ function ClientOpened(){
     window.close()
 }
 
-var {JobID, PlaceID} = GrabURLEarly()
+const [JobID, PlaceID] = GrabURLEarly()
 
 function PageLoaded(){
     JoinPlace(JobID, PlaceID)
@@ -49,4 +48,11 @@ function PageLoaded(){
     }
 }
 
-if (JobID && PlaceID){window.onload = PageLoaded}
+function WaitForRoblox(){
+    if (!Roblox?.GameLauncher?.joinGameInstance || !Roblox?.GameLauncher?.gameLaunchInterface?.joinGameInstance){
+        setTimeout(WaitForRoblox, 100)
+        return
+    }
+    PageLoaded()
+}
+WaitForRoblox()
