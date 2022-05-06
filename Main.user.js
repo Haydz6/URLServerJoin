@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.7
+// @version      1.8
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
@@ -38,6 +38,7 @@ function ClientOpened(){
 }
 
 const [JobID, PlaceID] = GrabURLEarly()
+if (!JobID || !PlaceID) return
 
 function PageLoaded(){
     JoinPlace(JobID, PlaceID)
