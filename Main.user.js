@@ -31,7 +31,6 @@ function GrabURLEarly(){
 }
 
 function JoinPlace(JobID, PlaceID){
-  console.log("JoinPlace fired with JobID: "+ JobID + "GameID: " + PlaceID)
   Roblox.GameLauncher.joinGameInstance(parseInt(PlaceID,10), String(JobID))
 }
 
@@ -40,8 +39,6 @@ function ClientOpened(){
 }
 
 const [JobID, PlaceID] = GrabURLEarly()
-console.log(JobID)
-console.log(PlaceID)
 if (!JobID || !PlaceID) return
 
 function PageLoaded(){
