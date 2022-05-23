@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         URL Server Join
 // @namespace    name?
-// @version      1.8
+// @version      1.9
 // @updateURL    https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
 // @homepage     https://github.com/Haydz6/URLServerJoin
 // @downloadURL  https://github.com/Haydz6/URLServerJoin/raw/main/Main.js
@@ -12,7 +12,18 @@
 // @run-at       document-start
 // ==/UserScript==
 
-function GetURLParameter(sParam){
+function GetURLParameter(ParamName){
+    const AllParameters = window.location.search.split("?")[1]
+    const Parameters = AllParameters && AllParameters.split("&")
+    if (!Parameters) return
+
+    for (let i = 0; i < Parameters.length; i++){
+        const [Name, Value] = Parameters[i].split("=")
+        if (Name == ParamName){
+            return Value
+        }
+    }
+
     const sPageURL = window.location.search.substring(1)
     const sURLVariables = sPageURL.split('?')
     for (var i = 0; i < sURLVariables.length; i++){
@@ -38,6 +49,8 @@ function ClientOpened(){
 }
 
 const [JobID, PlaceID] = GrabURLEarly()
+console.log(JobID)
+console.log(PlaceID)
 if (!JobID || !PlaceID) return
 
 function PageLoaded(){
