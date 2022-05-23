@@ -23,15 +23,6 @@ function GetURLParameter(ParamName){
             return Value
         }
     }
-
-    const sPageURL = window.location.search.substring(1)
-    const sURLVariables = sPageURL.split('?')
-    for (var i = 0; i < sURLVariables.length; i++){
-        const sParameterName = sURLVariables[i].split('=')
-        if (sParameterName[0] == sParam){
-            return sParameterName[1];
-        }
-    }
 }
 function GrabURLEarly(){
     const PlaceID = String(location.href.match(/\/(\d+)\//g)).match(/\d+/g)
